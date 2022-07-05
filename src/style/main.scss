@@ -1,0 +1,78 @@
+@import "./variable.scss";
+.layout {
+  min-height: 100vh;
+  background-color: $white-color;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: block;
+  margin: 0 auto;
+  max-width: 1320px;
+  padding-bottom: 10px;
+}
+
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $black-color;
+  outline: 0;
+  font-size: 1.3rem;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $black-color;
+  font-weight:700;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 2px;
+  border-color: $black-color;
+}
+
+.btn {
+  background-color: $white-color;
+  border-radius: $medium-border;
+  padding: 11px 100px;
+  color: $black-color;
+  border: 2px solid $black-color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 600;
+  &:hover {
+    background-color: $black-color;
+    color: $white-color;
+    border: 2px solid $black-color;
+  }
+  &:focus {
+    background-color: $black-color;
+    color: $white-color;
+    border: 2px solid $black-color;
+  }
+}
+

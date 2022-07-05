@@ -1,0 +1,31 @@
+@import './../../../style/variable.scss';
+
+.auntification {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid $black-color;
+  box-shadow: 0 0 4px 1px $black-color;
+  border-radius: 10px;
+  &-title {
+    font-size: $medium-text-size;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+  }
+  &-form {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &-btn {
+    cursor: pointer;
+    margin-top: 50px;
+  }
+}
+.have-account {
+  margin-top: 20px;
+}
+

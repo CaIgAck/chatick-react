@@ -1,0 +1,13 @@
+@import "./../../style/variable.scss";
+.preview-dialog {
+  border: 1px solid $black-color;
+  height: 50px;
+  width: inherit;
+  &__container {
+    flex-grow: 1;
+  }
+  &__user-name {
+    font-weight: bold;
+    color: $black-color;
+  }
+}
