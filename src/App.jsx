@@ -6,6 +6,8 @@ import {
     Route,
     Routes
 } from "react-router-dom";
+import {useSelector} from "react-redux";
+import RequireAuth from "./components/AuthComponents/RequireAuth/RequireAuth";
 function App() {
 
   return (
@@ -14,7 +16,11 @@ function App() {
             <Routes>
                 <Route path="/" element={<SignIn />} />
                 <Route path="/registration" element={<Registration />} />
-                <Route path="/messages" element={<MessagesLayout />} />
+                <Route path="/messages" element={
+                    <RequireAuth>
+                        <MessagesLayout />
+                    </RequireAuth>
+                } />
             </Routes>
         </Router>
     </div>

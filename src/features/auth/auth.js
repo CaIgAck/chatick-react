@@ -3,22 +3,14 @@ import {loginQueryRequest, registrationQueryRequest} from "../../helpers/api/aut
 
 export const registration = createAsyncThunk(
     'auth/registration',
-    async function({data}, {rejectWithValue}) {
-        try {
+    async function({data}) {
             return (await registrationQueryRequest({data})).data
-        } catch (e) {
-            return rejectWithValue(e)
-        }
     }
 )
 export const login = createAsyncThunk(
     'auth/login',
-    async function({data}, {rejectWithValue}) {
-        try {
-            return (await loginQueryRequest({data})).data
-        } catch (e) {
-            rejectWithValue(e)
-        }
+    async function({data}) {
+        return (await loginQueryRequest({data})).data
     }
 )
 
@@ -28,7 +20,11 @@ const initialState = {
         password: null
     },
     error: null,
-    status: null
+    status: null,
+    loginStatus: {
+        isLogin: false,
+        isCheck: false
+    }
 }
 
 export const auntification = createSlice({
@@ -37,6 +33,9 @@ export const auntification = createSlice({
     reducers: {
         saveAuthForm: (state, payload) => {
             state.auth[payload.payload.fieldName] = payload.payload.value
+        },
+        saveLoginStatus: (state, payload) => {
+            state.loginStatus[payload.payload.fieldName] = payload.payload.value
         }
     },
     extraReducers: {
@@ -68,7 +67,7 @@ export const auntification = createSlice({
 })
 
 
-export const { saveAuthForm } = auntification.actions
+export const { saveAuthForm, saveLoginStatus } = auntification.actions
 
 
 export default auntification.reducer

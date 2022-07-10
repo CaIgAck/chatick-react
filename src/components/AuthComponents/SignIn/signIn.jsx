@@ -3,7 +3,7 @@ import "../../../style/main.scss"
 import FormInput from "../../FormFields/FormInput";
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login, registration, saveAuthForm} from "../../../features/auth/auth";
+import {login, saveAuthForm} from "../../../features/auth/auth";
 
 function signIn() {
     const dispatch = useDispatch();
