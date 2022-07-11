@@ -1,4 +1,11 @@
 .dialog-container {
   height: 100%;
   flex-grow: 2;
+  overflow-y: scroll;
+  &__send-message-form {
+    height: 80px;
+    top: 0;
+    border: 1px solid #9b9b9b;
+    position: sticky;
+  }
 }

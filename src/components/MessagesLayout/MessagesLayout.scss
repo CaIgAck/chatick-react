@@ -7,7 +7,9 @@
   border: 1px solid $black-color;
   box-shadow: 0 0 4px 1px $black-color;
   border-radius: 10px;
+  overflow: hidden;
   &__header {
+    margin-top: 0;
     border-bottom: 2px solid $black-color;
     padding: 5px;
     &-title {
@@ -15,6 +17,7 @@
     }
   }
   &__container {
+    height: inherit;
     display: flex;
   }
 }

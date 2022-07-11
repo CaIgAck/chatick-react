@@ -3,11 +3,17 @@
   border: 1px solid $black-color;
   height: 50px;
   width: inherit;
+  cursor: pointer;
+  :hover {
+    background-color:rgba(0, 0, 0, 0.5);
+  }
   &__container {
     flex-grow: 1;
+    overflow-y: scroll;
   }
   &__user-name {
     font-weight: bold;
     color: $black-color;
+    height: inherit;
   }
 }

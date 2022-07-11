@@ -76,3 +76,35 @@
   }
 }
 
+
+.preview-dialog__container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.preview-dialog__container::-webkit-scrollbar-track {
+  width: 0;
+}
+
+/* Handle */
+.preview-dialog__container::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 3px;
+}
+
+
+.dialog-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.dialog-container::-webkit-scrollbar-track {
+  width: 0;
+}
+
+/* Handle */
+.dialog-container::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 3px;
+}
+

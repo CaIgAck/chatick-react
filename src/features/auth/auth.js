@@ -87,7 +87,6 @@ export const auntification = createSlice({
             state.error = null
             saveLoginStatus(state, {isLogin: true, isCheck: true})
         },
-
         [getProfile.pending]: (state) => {
             state.status = 'loading'
             state.error = null
