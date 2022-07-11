@@ -5,7 +5,9 @@ import './index.css'
 import { interceptorInit} from "./helpers/axios";
 import {Provider} from "react-redux";
 import store from "./store/index.js"
-interceptorInit()
+
+await interceptorInit()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <Provider store={store}>

@@ -7,7 +7,7 @@ import {registration, saveAuthForm} from "../../../features/auth/auth";
 
 function registrationForm() {
     const dispatch = useDispatch();
-    const auth = useSelector((state) => state.auth)
+    const auth = useSelector((state) => state.auth.auth)
     const  setRegistrationForm = ({fieldName, value}) => dispatch(saveAuthForm({fieldName, value}))
     return (
         <div className="layout">

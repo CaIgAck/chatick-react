@@ -1,16 +1,35 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {loginQueryRequest, registrationQueryRequest} from "../../helpers/api/auth";
+import {getProfileQueryRequest} from "../../helpers/api/profile";
 
 export const registration = createAsyncThunk(
     'auth/registration',
-    async function({data}) {
+    async function({data}, {rejectWithValue}) {
+        try {
             return (await registrationQueryRequest({data})).data
+        } catch (e) {
+            return  rejectWithValue(e)
+        }
     }
 )
 export const login = createAsyncThunk(
     'auth/login',
-    async function({data}) {
-        return (await loginQueryRequest({data})).data
+    async function({data}, {rejectWithValue}) {
+        try {
+            return (await loginQueryRequest({data})).data
+        } catch (e) {
+            return rejectWithValue(e)
+        }
+    }
+)
+export const getProfile = createAsyncThunk(
+    'auth/getProfile',
+    async function({query}, {rejectWithValue}) {
+        try {
+            return (await getProfileQueryRequest({query})).data
+        } catch (e) {
+            return rejectWithValue(e)
+        }
     }
 )
 
@@ -24,7 +43,13 @@ const initialState = {
     loginStatus: {
         isLogin: false,
         isCheck: false
-    }
+    },
+    profile: null
+}
+
+const saveLoginStatus = (state, {isLogin, isCheck}) => {
+    state.loginStatus.isLogin = isLogin
+    state.loginStatus.isCheck = isCheck
 }
 
 export const auntification = createSlice({
@@ -33,9 +58,6 @@ export const auntification = createSlice({
     reducers: {
         saveAuthForm: (state, payload) => {
             state.auth[payload.payload.fieldName] = payload.payload.value
-        },
-        saveLoginStatus: (state, payload) => {
-            state.loginStatus[payload.payload.fieldName] = payload.payload.value
         }
     },
     extraReducers: {
@@ -50,6 +72,7 @@ export const auntification = createSlice({
         [registration.fulfilled]: (state) => {
             state.status = 'resolved'
             state.error = null
+            saveLoginStatus(state, {isLogin: true, isCheck: true})
         },
         [login.pending]: (state) => {
             state.status = 'loading'
@@ -62,12 +85,29 @@ export const auntification = createSlice({
         [login.fulfilled]: (state) => {
             state.status = 'resolved'
             state.error = null
+            saveLoginStatus(state, {isLogin: true, isCheck: true})
         },
+
+        [getProfile.pending]: (state) => {
+            state.status = 'loading'
+            state.error = null
+        },
+        [getProfile.rejected]: (state, error) => {
+            state.status = 'rejected'
+            state.error = error
+            saveLoginStatus(state, {isLogin: false, isCheck: true})
+        },
+        [getProfile.fulfilled]: (state, payload) => {
+            state.status = 'resolved'
+            state.error = null
+            state.profile = payload.payload.value
+            saveLoginStatus(state, {isLogin: true, isCheck: true})
+        }
     }
 })
 
 
-export const { saveAuthForm, saveLoginStatus } = auntification.actions
+export const { saveAuthForm } = auntification.actions
 
 
 export default auntification.reducer

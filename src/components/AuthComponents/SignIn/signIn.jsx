@@ -1,14 +1,19 @@
 import '../Registration/Registration.scss'
 import "../../../style/main.scss"
 import FormInput from "../../FormFields/FormInput";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login, saveAuthForm} from "../../../features/auth/auth";
-
 function signIn() {
+    let navigate = useNavigate();
     const dispatch = useDispatch();
-    const auth = useSelector((state) => state.auth)
+    const auth = useSelector((state) => state.auth.auth)
     const setLoginForm = ({fieldName, value}) => dispatch(saveAuthForm({fieldName, value}))
+    const loginHandle = () => {
+        dispatch(login({data: auth})).then(() => {
+            navigate("messages")
+        })
+    }
     return (
         <div className="layout">
             <div className="content">
@@ -20,7 +25,7 @@ function signIn() {
                         <div className="have-account">
                             <Link to="/registration">Нет аккаунта?</Link>
                         </div>
-                        <div className="auntification-btn" onClick={() => dispatch(login({data: auth}))}>
+                        <div className="auntification-btn" onClick={() => loginHandle()}>
                             <button className="btn">Войти</button>
                         </div>
                     </div>

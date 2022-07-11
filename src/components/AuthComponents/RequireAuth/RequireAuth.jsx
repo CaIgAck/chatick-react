@@ -1,19 +1,22 @@
 import { useNavigate  } from "react-router-dom";
 import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 
 function requireAuth({ children }) {
     let navigate = useNavigate();
+    const [loaded, setLoaded] = useState(false)
     const loginStatus = useSelector((state) => state.auth.loginStatus)
-    if (!loginStatus.isLogin || !loginStatus.isCheck) {
-        // Redirect them to the /login page, but save the current location they were
-        // trying to go to when they were redirected. This allows us to send them
-        // along to that page after they login, which is a nicer user experience
-        // than dropping them off on the home page.
-        return navigate("/", { replace: true });
-
-    }
-
-    return children;
+    console.log(loginStatus)
+    useEffect(() => {
+        if(loaded) return
+        if (!loginStatus.isLogin || !loginStatus.isCheck) {
+            return navigate("/", { replace: true });
+        }
+        else {
+            return navigate("/messages", { replace: true });
+        }
+    }, [loaded])
+    return children
 }
 
 export default requireAuth
